@@ -3,5 +3,14 @@
   &lt;Solution /&gt;
 &lt;/SessionState&gt;</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=b4f59376_002D7545_002D4424_002D9c02_002D1f8e0979ea82/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="All tests from &amp;lt;TestProject&amp;gt;" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
-  &lt;Project Location="/home/glaicon/Desktop/dev/lovys_project/LovysProject/TestProject" Presentation="&amp;lt;TestProject&amp;gt;" /&gt;
+  &lt;Or&gt;
+    &lt;Not&gt;
+      &lt;TestAncestor&gt;
+        &lt;TestId&gt;NUnit3x::7A28325E-AFC7-45E1-A90F-B9EE7CA8B871::.NETCoreApp,Version=v3.1::TestProject.CandidateControllerTest.should_sucess&lt;/TestId&gt;
+      &lt;/TestAncestor&gt;
+    &lt;/Not&gt;
+    &lt;TestAncestor&gt;
+      &lt;TestId&gt;NUnit3x::7A28325E-AFC7-45E1-A90F-B9EE7CA8B871::.NETCoreApp,Version=v3.1::TestProject.CandidateControllerTest.should_sucess&lt;/TestId&gt;
+    &lt;/TestAncestor&gt;
+  &lt;/Or&gt;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>
