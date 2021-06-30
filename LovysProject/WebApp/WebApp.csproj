@@ -3,6 +3,8 @@
     <PropertyGroup>
         <TargetFramework>netcoreapp3.1</TargetFramework>
         <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+        <AssemblyName>WebApp</AssemblyName>
+        <RootNamespace>WebApp</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>

@@ -1,11 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 
-namespace LovysProject.Controllers
+namespace WebApp.Controllers
 {
     [ApiController]
-    [Route("interviewers")]
-    public class InterviewerController : ControllerBase
+    [Route("candidates")]
+    public class CandidateController : ControllerBase
     {
         [HttpGet]
         public string Get()

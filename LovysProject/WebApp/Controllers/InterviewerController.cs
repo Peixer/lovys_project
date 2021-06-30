@@ -1,10 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace LovysProject.Controllers
+namespace WebApp.Controllers
 {
     [ApiController]
-    [Route("candidates")]
-    public class CandidateController : ControllerBase
+    [Route("interviewers")]
+    public class InterviewerController : ControllerBase
     {
         [HttpGet]
         public string Get()
@@ -13,3 +13,5 @@ namespace LovysProject.Controllers
         }
     }
 }
+
+//Add free schedule

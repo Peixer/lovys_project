@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LovysProject", "LovysProject\LovysProject.csproj", "{01314C85-0221-4BA7-908D-DA87C00D31FD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApp", "WebApp\WebApp.csproj", "{01314C85-0221-4BA7-908D-DA87C00D31FD}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "Core\Core.csproj", "{3565F122-8F76-49B1-A319-545648B916C6}"
 EndProject
