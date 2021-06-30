@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using Lovys.Core.Calendar.Models;
+using Lovys.Core.Calendar.Entities;
 using Lovys.Core.Calendar.Repositories;
 
 namespace Lovys.Core.Calendar.Services

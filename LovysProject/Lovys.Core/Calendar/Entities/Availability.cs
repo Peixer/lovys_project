@@ -1,7 +1,7 @@
 using System;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Lovys.Core.Calendar.Models
+namespace Lovys.Core.Calendar.Entities
 {
     public class Availability
     {

@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Lovys.Core.Calendar.Data;
-using Lovys.Core.Calendar.Models;
+using Lovys.Core.Calendar.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace Lovys.Core.Calendar.Repositories

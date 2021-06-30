@@ -1,5 +1,5 @@
 using System.Threading.Tasks;
-using Lovys.Core.Calendar.Models;
+using Lovys.Core.Calendar.Entities;
 using Lovys.Core.Calendar.Repositories;
 using Lovys.WebApp.Controllers;
 using Microsoft.AspNetCore.Mvc;

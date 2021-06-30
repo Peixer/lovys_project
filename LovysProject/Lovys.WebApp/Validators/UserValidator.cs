@@ -1,5 +1,5 @@
 using FluentValidation;
-using Lovys.Core.Calendar.Models;
+using Lovys.Core.Calendar.Entities;
 
 namespace Lovys.WebApp.Validators
 {

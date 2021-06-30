@@ -2,7 +2,7 @@ using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-using Lovys.Core.Calendar.Models;
+using Lovys.Core.Calendar.Entities;
 using Microsoft.IdentityModel.Tokens;
 
 namespace Lovys.Core.Calendar.Util.Auth

@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 
-namespace Lovys.WebApp.DTO
+namespace Lovys.WebApp.Models
 {
-    public class FilterPeriodsDTO
+    public class FilterPeriodsModel
     {
         public List<string> Interviewers { get; set; }
     }

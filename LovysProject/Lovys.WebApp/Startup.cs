@@ -2,7 +2,7 @@ using System;
 using System.Text;
 using FluentValidation.AspNetCore;
 using Lovys.Core.Calendar.Data;
-using Lovys.Core.Calendar.Models;
+using Lovys.Core.Calendar.Entities;
 using Lovys.Core.Calendar.Repositories;
 using Lovys.Core.Calendar.Services;
 using Lovys.Core.Calendar.Util.Auth;

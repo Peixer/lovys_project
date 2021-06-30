@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using Lovys.Core.Calendar.Models;
+using Lovys.Core.Calendar.Entities;
 using Lovys.Core.Calendar.Repositories;
 using Lovys.Core.Calendar.Services;
-using Lovys.WebApp.DTO;
+using Lovys.WebApp.Models;
 using Lovys.WebApp.Validators;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -47,7 +47,7 @@ namespace Lovys.WebApp.Controllers
         }
 
         [HttpPost("/{id}/filter")]
-        public async Task<IActionResult> FilterPeriods(string id, FilterPeriodsDTO filter)
+        public async Task<IActionResult> FilterPeriods(string id, FilterPeriodsModel filter)
         {
             //availabilities interviewers
             //availabilities candidate

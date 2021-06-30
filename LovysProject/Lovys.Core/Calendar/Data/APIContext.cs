@@ -1,4 +1,4 @@
-using Lovys.Core.Calendar.Models;
+using Lovys.Core.Calendar.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace Lovys.Core.Calendar.Data
