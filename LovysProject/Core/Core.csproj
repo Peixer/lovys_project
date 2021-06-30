@@ -5,7 +5,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Folder Include="Calendar\Repositories" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="5.0.7" />
     </ItemGroup>
 
 </Project>

@@ -4,7 +4,7 @@ using WebApp.Controllers;
 
 namespace TestProject
 {
-    public class Tests
+    public class InterviewerControllerTest
     {
         [SetUp]
         public void Setup()
@@ -12,10 +12,10 @@ namespace TestProject
         }
 
         [Test]
-        public void should_verify_get_method()
+        public void should_verify_post_method()
         {
             var controller = new InterviewerController();
-            var result = controller.Get();
+            var result = controller.Post();
 
             result.ShouldBe("sucess");
         }
