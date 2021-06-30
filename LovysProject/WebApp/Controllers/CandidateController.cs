@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using Core.Calendar.Models;
 using Core.Calendar.Repositories;
+using Core.Calendar.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using WebApp.Validators;
@@ -14,13 +15,16 @@ namespace WebApp.Controllers
     {
         private readonly IAvailabilityRepository _availabilityRepository;
         private readonly IUserRepository _userRepository;
+        private readonly IAvailabilityService _availabilityService;
 
-        public CandidateController(IAvailabilityRepository availabilityRepository, IUserRepository userRepository)
+        public CandidateController(IAvailabilityRepository availabilityRepository, IUserRepository userRepository,
+            IAvailabilityService availabilityService)
         {
             _availabilityRepository = availabilityRepository;
             _userRepository = userRepository;
+            _availabilityService = availabilityService;
         }
-        
+
         [Authorize(Roles = "Candidate")]
         [HttpPost]
         public async Task<IActionResult> Post(Availability availability)
@@ -34,11 +38,10 @@ namespace WebApp.Controllers
 
             string username = User?.FindFirst(ClaimTypes.Name)?.Value;
 
-            availability.User = await this._userRepository.FindUserByUsername(username);
-            await _availabilityRepository.Insert(availability);
+            _availabilityService.InsertAvailability(availability, username);
             return Ok("sucess");
         }
-        
+
         [HttpGet]
         public string Get()
         {

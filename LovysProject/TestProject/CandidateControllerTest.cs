@@ -3,6 +3,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using Core.Calendar.Models;
 using Core.Calendar.Repositories;
+using Core.Calendar.Services;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
 using NUnit.Framework;
@@ -22,13 +23,15 @@ namespace TestProject
         {
             availabilityRepositoryMock = new Mock<IAvailabilityRepository>();
             userRepositoryMock = new Mock<IUserRepository>();
+            var availabilityServiceMock = new Mock<IAvailabilityService>();
 
             userRepositoryMock.Setup(x => x.FindUserByUsername(It.IsAny<string>()))
                 .Returns(Task.FromResult(new User()));
             availabilityRepositoryMock.Setup(x => x.Insert(It.IsAny<Availability>()))
                 .Returns(Task.FromResult(true));
-            
-            controller = new CandidateController(availabilityRepositoryMock.Object, userRepositoryMock.Object);
+
+            controller = new CandidateController(availabilityRepositoryMock.Object, userRepositoryMock.Object,
+                availabilityServiceMock.Object);
         }
 
         [Test]
