@@ -5,5 +5,6 @@ namespace Core.Calendar.Services
     public interface IAvailabilityService
     {
         void InsertAvailability(Availability availability, string username);
+        bool IsValidSlotTime(Availability availability);
     }
 }

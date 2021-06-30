@@ -23,7 +23,6 @@ namespace TestProject
         {
             availabilityRepositoryMock = new Mock<IAvailabilityRepository>();
             userRepositoryMock = new Mock<IUserRepository>();
-            var availabilityServiceMock = new Mock<IAvailabilityService>();
 
             userRepositoryMock.Setup(x => x.FindUserByUsername(It.IsAny<string>()))
                 .Returns(Task.FromResult(new User()));
@@ -31,7 +30,7 @@ namespace TestProject
                 .Returns(Task.FromResult(true));
 
             controller = new InterviewerController(availabilityRepositoryMock.Object, userRepositoryMock.Object,
-                availabilityServiceMock.Object);
+                new AvailabilityService(availabilityRepositoryMock.Object, userRepositoryMock.Object));
         }
 
         [Test]
@@ -39,7 +38,7 @@ namespace TestProject
         {
             ObjectResult result = (ObjectResult) await controller.Post(new Availability()
             {
-                EndTime = "10pm", StartTime = "09pm", DayOfWeek = DayOfWeek.Monday
+                EndTime = "10pm", StartTime = "9pm", DayOfWeek = DayOfWeek.Monday
             });
 
             result.Value.ToString().ShouldBe("sucess");
@@ -66,7 +65,7 @@ namespace TestProject
             });
 
             result.StatusCode.ShouldBe(400);
-            result.Value.ToString().ShouldContain("'End Time' is not in the correct format.");
+            result.Value.ToString().ShouldContain("Start time or end time is incorrect");
         }
 
         [Test]
@@ -78,7 +77,7 @@ namespace TestProject
             });
 
             result.StatusCode.ShouldBe(400);
-            result.Value.ToString().ShouldContain("'Start Time' must be less than '10pm'.");
+            result.Value.ToString().ShouldContain("Start time or end time is incorrect");
         }
     }
 }

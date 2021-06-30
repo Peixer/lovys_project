@@ -10,6 +10,7 @@ using WebApp.Validators;
 namespace WebApp.Controllers
 {
     [ApiController]
+    [Authorize(Roles = "Interviewer")]
     [Route("interviewers")]
     public class InterviewerController : ControllerBase
     {
@@ -25,7 +26,6 @@ namespace WebApp.Controllers
             _availabilityService = availabilityService;
         }
 
-        [Authorize(Roles = "Interviewer")]
         [HttpPost]
         public async Task<IActionResult> Post(Availability availability)
         {
@@ -35,6 +35,10 @@ namespace WebApp.Controllers
             {
                 return new BadRequestObjectResult(validRes.ToString(","));
             }
+            if (!_availabilityService.IsValidSlotTime(availability))
+            {
+                return new BadRequestObjectResult("Start time or end time is incorrect");
+            }
 
             string username = User?.FindFirst(ClaimTypes.Name)?.Value;
 
@@ -42,7 +46,6 @@ namespace WebApp.Controllers
             return Ok("sucess");
         }
 
-        [Authorize(Roles = "Interviewer")]
         [HttpGet]
         public async Task<IActionResult> Get()
         {

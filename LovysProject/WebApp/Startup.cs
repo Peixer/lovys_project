@@ -5,6 +5,7 @@ using System.Text;
 using Core.Calendar.Data;
 using Core.Calendar.Models;
 using Core.Calendar.Repositories;
+using Core.Calendar.Services;
 using Core.Calendar.Util.Auth;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -35,7 +36,6 @@ namespace WebApp
             
             services.AddDbContext<APIContext>(opt =>
                 opt.UseInMemoryDatabase("lovys"));
-            services.AddScoped<APIContext>();  
             
             services.AddControllers()
                 .AddNewtonsoftJson()
@@ -89,8 +89,8 @@ namespace WebApp
                 });
             
             services.AddScoped<IUserRepository, UserRepository>();            
-            services.AddScoped<IAvailabilityRepository, AvailabilityRepository>();
-
+            services.AddScoped<IAvailabilityRepository, AvailabilityRepository>();            
+            services.AddScoped<IAvailabilityService, AvailabilityService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

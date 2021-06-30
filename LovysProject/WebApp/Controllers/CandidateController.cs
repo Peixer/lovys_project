@@ -35,6 +35,10 @@ namespace WebApp.Controllers
             {
                 return new BadRequestObjectResult(validRes.ToString(","));
             }
+            if (!_availabilityService.IsValidSlotTime(availability))
+            {
+                return new BadRequestObjectResult("Start time or end time is incorrect");
+            }
 
             string username = User?.FindFirst(ClaimTypes.Name)?.Value;
 
