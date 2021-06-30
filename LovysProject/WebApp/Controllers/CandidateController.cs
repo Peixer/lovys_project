@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 namespace WebApp.Controllers
 {
@@ -6,6 +7,7 @@ namespace WebApp.Controllers
     [Route("candidates")]
     public class CandidateController : ControllerBase
     {
+        [Authorize(Roles = "Candidate")]
         [HttpPost]
         public string Post()
         {

@@ -29,9 +29,9 @@ namespace WebApp.Controllers
                 return new BadRequestObjectResult(validRes.ToString(","));
             }
             
-            int countUserWithSameUsername = await _userRepository.FindUserByUsername(user.Username);
+            var userWithSameUsername = await _userRepository.FindUserByUsername(user.Username);
 
-            if (countUserWithSameUsername > 0)
+            if (userWithSameUsername != null)
             {
                 return new BadRequestObjectResult("Existing username, please enter another username");
             }

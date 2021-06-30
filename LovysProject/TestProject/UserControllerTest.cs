@@ -44,7 +44,7 @@ namespace TestProject
         }
 
         [Test]
-        public async Task should_fail_login_not_found_user()
+        public async Task should_fail_login_username_or_password_incorrect()
         {
             var userRepositoryMock = new Mock<IUserRepository>();
 
