@@ -6,9 +6,16 @@ namespace WebApp.Controllers
     [Route("candidates")]
     public class CandidateController : ControllerBase
     {
+        [HttpPost]
+        public string Post()
+        {
+            //Add candidate availabilities
+            return "sucess";
+        }
         [HttpGet]
         public string Get()
         {
+            //Get collection of possible interview
             return "sucess";
         }
     }

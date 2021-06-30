@@ -6,12 +6,11 @@ namespace WebApp.Controllers
     [Route("interviewers")]
     public class InterviewerController : ControllerBase
     {
-        [HttpGet]
-        public string Get()
+        [HttpPost]
+        public string Post()
         {
+            //Add interviewers availabilities
             return "sucess";
         }
     }
 }
-
-//Add free schedule
