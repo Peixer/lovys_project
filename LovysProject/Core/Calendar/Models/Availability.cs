@@ -1,9 +1,12 @@
+using System;
+
 namespace Core.Calendar.Models
 {
     public class Availability
     {
-        public string StartTime { get; set; }
-        public string IdUser { get; set; }
-        public string IdCandidate { get; set; }
+        public string StartTime { get; set; }        
+        public string EndTime { get; set; } 
+        public DayOfWeek DayOfWeek { get; set; }
+        public User User { get; set; }
     }
 }
