@@ -9,33 +9,35 @@ namespace Core.Calendar.Repositories
 {
     public class UserRepository : IUserRepository
     {
-        private readonly UserContext _userContext;
+        private readonly APIContext _apiContext;
 
-        public UserRepository(UserContext userContext)
+        public UserRepository(APIContext apiContext)
         {
-            _userContext = userContext;
+            _apiContext = apiContext;
         }
 
         public async Task<bool> Insert(User user)
         {
-            this._userContext.Users.Add(user);
-            await this._userContext.SaveChangesAsync();
+            this._apiContext.Users.Add(user);
+            await this._apiContext.SaveChangesAsync();
 
             return true;
         }
 
         public Task<List<User>> Find()
         {
-            return this._userContext.Users.ToListAsync();
+            return this._apiContext.Users.ToListAsync();
         }
 
         public async Task<User> FindUser(string username, string password)
-        { 
-            return await this._userContext.Users.SingleOrDefaultAsync(x => x.Username.ToLower() == username.ToLower() && x.Password == password);
+        {
+            return await this._apiContext.Users.SingleOrDefaultAsync(x =>
+                x.Username.ToLower() == username.ToLower() && x.Password == password);
         }
 
-        public async Task<int> FindUserByUsername(string username)
-        {    return await this._userContext.Users.CountAsync(x => x.Username.ToLower() == username.ToLower());
+        public async Task<User> FindUserByUsername(string username)
+        {
+            return await this._apiContext.Users.SingleOrDefaultAsync(x => x.Username.ToLower() == username.ToLower());
         }
     }
 }
