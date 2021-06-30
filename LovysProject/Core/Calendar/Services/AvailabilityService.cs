@@ -1,5 +1,7 @@
 using System;
+using System.Collections.Generic;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 using Core.Calendar.Models;
 using Core.Calendar.Repositories;
 
@@ -52,6 +54,11 @@ namespace Core.Calendar.Services
         private bool TimeSlotsIsGreaterThanTwelveHour(int hourEnd, int hourStart)
         {
             return hourEnd > 12 || hourStart > 12;
+        }
+
+        public async Task<List<Availability>> GetAvailabilitiesByUserId(List<string> userIds)
+        {
+            return await _availabilityRepository.Find(userIds);
         }
     }
 }

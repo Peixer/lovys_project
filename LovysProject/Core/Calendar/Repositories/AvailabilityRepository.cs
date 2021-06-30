@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Core.Calendar.Data;
 using Core.Calendar.Models;
@@ -27,6 +28,14 @@ namespace Core.Calendar.Repositories
         {
             return this._apiContext.Availabilities
                 .Include(u => u.User)
+                .ToListAsync();
+        }
+
+        public Task<List<Availability>> Find(List<string> userIds)
+        {
+            return this._apiContext.Availabilities
+                .Include(u => u.User)
+                .Where(x => userIds.Contains(x.User.Id))
                 .ToListAsync();
         }
     }

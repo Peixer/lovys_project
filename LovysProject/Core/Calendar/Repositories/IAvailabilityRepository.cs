@@ -8,5 +8,6 @@ namespace Core.Calendar.Repositories
     {
         Task<bool> Insert(Availability availability);
         Task<List<Availability>> Find();        
+        Task<List<Availability>> Find(List<string> userIds);      
     }
 }
