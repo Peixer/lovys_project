@@ -1,4 +1,5 @@
 using NUnit.Framework;
+using Shouldly;
 using WebApp.Controllers;
 
 namespace TestProject
@@ -16,7 +17,7 @@ namespace TestProject
             var controller = new InterviewerController();
             var result = controller.Get();
 
-            result.Equals("sucess");
+            result.ShouldBe("sucess");
         }
     }
 }
