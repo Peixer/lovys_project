@@ -7,6 +7,8 @@ namespace Core.Calendar.Repositories
     public interface IUserRepository
     {
         Task<bool> Insert(User user);
-        Task<List<User>> Find();
+        Task<List<User>> Find();        
+        Task<User> FindUser(string username, string password);
+
     }
 }

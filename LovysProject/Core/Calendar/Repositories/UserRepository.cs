@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Core.Calendar.Data;
 using Core.Calendar.Models;
@@ -26,6 +27,11 @@ namespace Core.Calendar.Repositories
         public Task<List<User>> Find()
         {
             return this._userContext.Users.ToListAsync();
+        }
+
+        public async Task<User> FindUser(string username, string password)
+        { 
+            return await this._userContext.Users.SingleOrDefaultAsync(x => x.Username.ToLower() == username.ToLower() && x.Password == password);
         }
     }
 }
