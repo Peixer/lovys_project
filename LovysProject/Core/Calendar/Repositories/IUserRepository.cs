@@ -10,5 +10,6 @@ namespace Core.Calendar.Repositories
         Task<List<User>> Find();        
         Task<User> FindUser(string username, string password);
         Task<User> FindUserByUsername(string username);
+        Task<User> FindUserById(string id);
     }
 }

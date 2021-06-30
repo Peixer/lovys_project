@@ -1,10 +1,12 @@
-﻿using System.Security.Claims;
+﻿using System.Collections.Generic;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Core.Calendar.Models;
 using Core.Calendar.Repositories;
 using Core.Calendar.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using WebApp.DTO;
 using WebApp.Validators;
 
 namespace WebApp.Controllers
@@ -13,16 +15,13 @@ namespace WebApp.Controllers
     [Route("candidates")]
     public class CandidateController : ControllerBase
     {
-        private readonly IAvailabilityRepository _availabilityRepository;
-        private readonly IUserRepository _userRepository;
         private readonly IAvailabilityService _availabilityService;
+        private readonly IUserRepository _userRepository;
 
-        public CandidateController(IAvailabilityRepository availabilityRepository, IUserRepository userRepository,
-            IAvailabilityService availabilityService)
+        public CandidateController(IAvailabilityService availabilityService, IUserRepository userRepository)
         {
-            _availabilityRepository = availabilityRepository;
-            _userRepository = userRepository;
             _availabilityService = availabilityService;
+            _userRepository = userRepository;
         }
 
         [Authorize(Roles = "Candidate")]
@@ -35,6 +34,7 @@ namespace WebApp.Controllers
             {
                 return new BadRequestObjectResult(validRes.ToString(","));
             }
+
             if (!_availabilityService.IsValidSlotTime(availability))
             {
                 return new BadRequestObjectResult("Start time or end time is incorrect");
@@ -46,11 +46,28 @@ namespace WebApp.Controllers
             return Ok("sucess");
         }
 
-        [HttpGet]
-        public string Get()
+        [HttpPost("/{id}/filter")]
+        public async Task<IActionResult> FilterPeriods(string id, FilterPeriodsDTO filter)
         {
-            //Get collection of possible interview
-            return "sucess";
+            //availabilities interviewers
+            //availabilities candidate
+            //intersection between then
+
+            var availabilitiesCandadite = await _availabilityService.GetAvailabilitiesByUserId(new List<string>() {id});
+            var availabilitiesInterviewers = await _availabilityService.GetAvailabilitiesByUserId(filter.Interviewers);
+
+
+            // create method to split range of hours
+            // create new class to make free hour to candidate/interviewers
+            // create list of period class
+            // order list of period class
+            // group items with same DayOfWeek + hour on list of period class 
+            
+            
+            
+            
+            
+            return Ok(await _userRepository.FindUserById(id));
         }
     }
 }

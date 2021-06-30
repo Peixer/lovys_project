@@ -15,14 +15,11 @@ namespace WebApp.Controllers
     public class InterviewerController : ControllerBase
     {
         private readonly IAvailabilityRepository _availabilityRepository;
-        private readonly IUserRepository _userRepository;
         private readonly IAvailabilityService _availabilityService;
 
-        public InterviewerController(IAvailabilityRepository availabilityRepository, IUserRepository userRepository,
-            IAvailabilityService availabilityService)
+        public InterviewerController(IAvailabilityRepository availabilityRepository, IAvailabilityService availabilityService)
         {
             _availabilityRepository = availabilityRepository;
-            _userRepository = userRepository;
             _availabilityService = availabilityService;
         }
 

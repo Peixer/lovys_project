@@ -39,5 +39,10 @@ namespace Core.Calendar.Repositories
         {
             return await this._apiContext.Users.SingleOrDefaultAsync(x => x.Username.ToLower() == username.ToLower());
         }
+
+        public async Task<User> FindUserById(string id)
+        {
+            return await this._apiContext.Users.SingleOrDefaultAsync(x => x.Id == id);
+        }
     }
 }

@@ -29,8 +29,9 @@ namespace TestProject
             availabilityRepositoryMock.Setup(x => x.Insert(It.IsAny<Availability>()))
                 .Returns(Task.FromResult(true));
 
-            controller = new CandidateController(availabilityRepositoryMock.Object, userRepositoryMock.Object,
-                new AvailabilityService(availabilityRepositoryMock.Object, userRepositoryMock.Object));
+            controller =
+                new CandidateController(new AvailabilityService(availabilityRepositoryMock.Object,
+                    userRepositoryMock.Object), userRepositoryMock.Object);
         }
 
         [Test]
