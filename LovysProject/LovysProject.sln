@@ -6,6 +6,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lovys.Core", "Lovys.Core\Lo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lovys.WebApp.Test", "Lovys.WebApp.Test\Lovys.WebApp.Test.csproj", "{7A28325E-AFC7-45E1-A90F-B9EE7CA8B871}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lovys.Core.Test", "Lovys.Core.Test\Lovys.Core.Test.csproj", "{0C33ADBF-C551-4313-994A-8E7773994F37}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +26,9 @@ Global
 		{7A28325E-AFC7-45E1-A90F-B9EE7CA8B871}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7A28325E-AFC7-45E1-A90F-B9EE7CA8B871}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7A28325E-AFC7-45E1-A90F-B9EE7CA8B871}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0C33ADBF-C551-4313-994A-8E7773994F37}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0C33ADBF-C551-4313-994A-8E7773994F37}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0C33ADBF-C551-4313-994A-8E7773994F37}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0C33ADBF-C551-4313-994A-8E7773994F37}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
