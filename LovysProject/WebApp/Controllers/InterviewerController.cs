@@ -32,13 +32,13 @@ namespace WebApp.Controllers
                 return new BadRequestObjectResult(validRes.ToString(","));
             }
 
-            string username = User.FindFirst(ClaimTypes.Name)?.Value;
+            string username = User?.FindFirst(ClaimTypes.Name)?.Value;
 
             availability.User = await this._userRepository.FindUserByUsername(username);
             await _availabilityRepository.Insert(availability);
             return Ok("sucess");
         }
-
+        
         [Authorize(Roles = "Interviewer")]
         [HttpGet]
         public async Task<IActionResult> Get()
