@@ -24,24 +24,34 @@ namespace Core.Calendar.Services
 
         public bool IsValidSlotTime(Availability availability)
         {
-            var startIsAM = availability.StartTime.Contains("am");
-            var endIsAM = availability.EndTime.Contains("am");
+            var startTimeIsAM = availability.StartTime.Contains("am");
+            var endIsTimeAM = availability.EndTime.Contains("am");
             var hourStart = Convert.ToInt16(Regex.Replace(availability.StartTime, @"\D", ""));
             var hourEnd = Convert.ToInt16(Regex.Replace(availability.EndTime, @"\D", ""));
 
-            if (!startIsAM && endIsAM)
+            if (StartTimeIsGreaterThanEndTime(startTimeIsAM, endIsTimeAM))
                 return false;
 
-            if (endIsAM == startIsAM)
+            if (endIsTimeAM == startTimeIsAM)
             {
                 if (hourEnd < hourStart)
                     return false;
             }
 
-            if (hourEnd > 12 || hourStart > 12)
+            if (TimeSlotsIsGreaterThanTwelveHour(hourEnd, hourStart))
                 return false;
 
             return true;
+        }
+
+        private bool StartTimeIsGreaterThanEndTime(bool startTimeIsAM, bool endIsTimeAM)
+        {
+            return !startTimeIsAM && endIsTimeAM;
+        }
+
+        private bool TimeSlotsIsGreaterThanTwelveHour(int hourEnd, int hourStart)
+        {
+            return hourEnd > 12 || hourStart > 12;
         }
     }
 }
