@@ -45,5 +45,20 @@ namespace TestProject
             result.StatusCode.ShouldBe(400);
             result.Value.ToString().ShouldContain("'End Time' must not be empty.");
         }
+        
+        [Test]
+        public async Task should_fail_wrong_format_endTime()
+        {
+            var availabilityRepositoryMock = new Mock<IAvailabilityRepository>();
+            var userRepositoryMock = new Mock<IUserRepository>();
+            var controller = new InterviewerController(availabilityRepositoryMock.Object, userRepositoryMock.Object);
+            ObjectResult result = (ObjectResult) await controller.Post(new Availability()
+            {
+                EndTime = "09pm",StartTime = "19pm", DayOfWeek = DayOfWeek.Monday
+            });
+
+            result.StatusCode.ShouldBe(400);
+            result.Value.ToString().ShouldContain("'End Time' is not in the correct format.");
+        }
     }
 }
