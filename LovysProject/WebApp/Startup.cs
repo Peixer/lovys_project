@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Core.Calendar.Data;
+using Core.Calendar.Models;
 using Core.Calendar.Repositories;
 using Core.Calendar.Util.Auth;
 using FluentValidation.AspNetCore;
@@ -32,9 +33,9 @@ namespace WebApp
         {
             services.AddHealthChecks();
             
-            services.AddDbContext<AvailabilityContext>(opt =>
-                opt.UseInMemoryDatabase("availabilities"));
-            services.AddDbContext<UserContext>(opt => opt.UseInMemoryDatabase("user"));
+            services.AddDbContext<APIContext>(opt =>
+                opt.UseInMemoryDatabase("lovys"));
+            services.AddScoped<APIContext>();  
             
             services.AddControllers()
                 .AddNewtonsoftJson()
@@ -43,7 +44,6 @@ namespace WebApp
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo {Title = "WebApp", Version = "v1"}); 
-                // Include 'SecurityScheme' to use JWT Authentication
                 var jwtSecurityScheme = new OpenApiSecurityScheme
                 {
                     Scheme = "bearer",
@@ -64,9 +64,8 @@ namespace WebApp
 
                 c.AddSecurityRequirement(new OpenApiSecurityRequirement
                 {
-                    { jwtSecurityScheme, Array.Empty<string>() }
+                    {jwtSecurityScheme, Array.Empty<string>()}
                 });
-                
             });
             
             
@@ -89,7 +88,9 @@ namespace WebApp
                     };
                 });
             
-            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();            
+            services.AddScoped<IAvailabilityRepository, AvailabilityRepository>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -101,7 +102,11 @@ namespace WebApp
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "WebApp v1"));
             }
+            using (var scope = app.ApplicationServices.CreateScope()) {
+                var context = scope.ServiceProvider.GetRequiredService<APIContext>();
 
+                AddTestData(context);
+            }
             app.UseHttpsRedirection();
 
             app.UseRouting();
@@ -111,5 +116,32 @@ namespace WebApp
 
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
         }
+        private static void AddTestData(APIContext context)
+        {
+            var testUser1 = new User
+            {
+                Id = "abc123",
+                Name = "string",
+                Username = "string",
+                Password = "string",
+                Role = UserRole.Interviewer,
+            };
+ 
+            context.Users.Add(testUser1);
+ 
+            var testAvailability = new Availability()
+            {
+                Id = "def234",
+                User = testUser1,
+                EndTime = "9pm",
+                StartTime = "8pm",
+                DayOfWeek = DayOfWeek.Friday
+            };
+ 
+            context.Availabilities.Add(testAvailability);
+ 
+            context.SaveChanges();
+        }
+        
     }
 }

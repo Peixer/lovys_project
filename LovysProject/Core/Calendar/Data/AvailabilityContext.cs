@@ -3,13 +3,14 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Core.Calendar.Data
 {
-    public class AvailabilityContext : DbContext
+    public class APIContext : DbContext
     {
-        public AvailabilityContext(DbContextOptions<AvailabilityContext> options)
+        public APIContext(DbContextOptions<APIContext> options)
             : base(options)
         {
         }
 
         public DbSet<Availability> Availabilities { get; set; }
+        public DbSet<User> Users { get; set; }
     }
 }
