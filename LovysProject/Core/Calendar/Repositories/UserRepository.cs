@@ -33,5 +33,9 @@ namespace Core.Calendar.Repositories
         { 
             return await this._userContext.Users.SingleOrDefaultAsync(x => x.Username.ToLower() == username.ToLower() && x.Password == password);
         }
+
+        public async Task<int> FindUserByUsername(string username)
+        {    return await this._userContext.Users.CountAsync(x => x.Username.ToLower() == username.ToLower());
+        }
     }
 }

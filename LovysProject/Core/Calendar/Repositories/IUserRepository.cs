@@ -9,6 +9,6 @@ namespace Core.Calendar.Repositories
         Task<bool> Insert(User user);
         Task<List<User>> Find();        
         Task<User> FindUser(string username, string password);
-
+        Task<int> FindUserByUsername(string username);
     }
 }

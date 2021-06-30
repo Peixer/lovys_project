@@ -53,7 +53,7 @@ namespace TestProject
                 {Username = "teste", Password = "teste", Role = UserRole.Candidate});
 
             result.StatusCode.ShouldBe(400);
-            result.Value.ToString().ShouldContain("User not found");
+            result.Value.ToString().ShouldContain("Username or password is incorrect");
         }
         
         [Test]

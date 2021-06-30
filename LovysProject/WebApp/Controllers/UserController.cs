@@ -28,6 +28,13 @@ namespace WebApp.Controllers
             {
                 return new BadRequestObjectResult(validRes.ToString(","));
             }
+            
+            int countUserWithSameUsername = await _userRepository.FindUserByUsername(user.Username);
+
+            if (countUserWithSameUsername > 0)
+            {
+                return new BadRequestObjectResult("Existing username, please enter another username");
+            }
 
             await _userRepository.Insert(user);
             return Ok("sucess");
@@ -53,10 +60,10 @@ namespace WebApp.Controllers
 
             if (userLogged == null)
             {
-                return new BadRequestObjectResult("User not found");
+                return new BadRequestObjectResult("Username or password is incorrect");
             }
 
-            var token = TokenService.GenerateToken(user);
+            var token = TokenService.GenerateToken(userLogged);
 
             return Ok(new {user = userLogged, token});
         }

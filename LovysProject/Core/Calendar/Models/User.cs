@@ -14,7 +14,7 @@ namespace Core.Calendar.Models
         public string Username { get; set; }
         public string Password { get; set; }
         public UserRole Role { get; set; }
-        
+
         public bool ShouldSerializePassword()
         {
             return false;
@@ -23,7 +23,7 @@ namespace Core.Calendar.Models
 
     public enum UserRole
     {
-        Candidate,
-        Interviewer
+        Candidate = 0,
+        Interviewer = 1
     }
 }
