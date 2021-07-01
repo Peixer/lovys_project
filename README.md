@@ -2,7 +2,7 @@
 
 Lovys Tech Challenge - API for calendar interview - [Documentation](https://lovys.azurewebsites.net/swagger/index.html)
 
-The purpose of the test was to create an API for calendar interview, where both the candidate and the interviewer would have to register their availabilities, and only 1-hour period with the am|pm time format are accepted. It will be possible to obtain the available times for interviews of a candidate with one or more interviewers.
+The purpose of the challenge was to create an API for calendar interview, where both the candidate and the interviewer would have to register their availabilities, and only 1-hour period with the am|pm time format are accepted. It will be possible to obtain the available times for interviews of a candidate with one or more interviewers.
 
 - I choose to create two projects Lovys.WebApp and Lovys.Core, each with his test project.
 - Lovys.WebApp 
