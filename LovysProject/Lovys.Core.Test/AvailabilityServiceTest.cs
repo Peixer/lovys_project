@@ -45,6 +45,35 @@ namespace Lovys.Core.Test
         }
 
         [Test]
+        public async Task should_fail_incorrect_slot_time()
+        {
+            availabilityService.IsValidSlotTime(new Availability()
+            {
+                EndTime = "20pm", StartTime = "-2am"
+            }).ShouldBeFalse();
+            
+            availabilityService.IsValidSlotTime(new Availability()
+            {
+                EndTime = "10pm", StartTime = "-2am"
+            }).ShouldBeFalse();
+            
+            availabilityService.IsValidSlotTime(new Availability()
+            {
+                EndTime = "13pm", StartTime = "2am"
+            }).ShouldBeFalse();
+            
+            availabilityService.IsValidSlotTime(new Availability()
+            {
+                EndTime = "0am", StartTime = "5am"
+            }).ShouldBeFalse();
+            
+            availabilityService.IsValidSlotTime(new Availability()
+            {
+                EndTime = "12am", StartTime = "5am"
+            }).ShouldBeFalse();
+        }
+
+        [Test]
         public async Task should_split_range_hours()
         {
             var hours = availabilityService.SplitRangeHours(
