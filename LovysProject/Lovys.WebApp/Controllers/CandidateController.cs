@@ -15,7 +15,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Lovys.WebApp.Controllers
 {
     [ApiController]
-    [Route("candidates")]
+    [Route("api/candidates")]
     public class CandidateController : ControllerBase
     {
         private readonly IAvailabilityService _availabilityService;

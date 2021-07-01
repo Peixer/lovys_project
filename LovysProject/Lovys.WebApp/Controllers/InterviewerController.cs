@@ -11,7 +11,7 @@ namespace Lovys.WebApp.Controllers
 {
     [ApiController]
     [Authorize(Roles = "Interviewer")]
-    [Route("interviewers")]
+    [Route("api/interviewers")]
     public class InterviewerController : ControllerBase
     {
         private readonly IAvailabilityRepository _availabilityRepository;
