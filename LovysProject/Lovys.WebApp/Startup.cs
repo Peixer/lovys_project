@@ -95,12 +95,13 @@ namespace Lovys.WebApp
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            if (env.IsDevelopment())
+            // if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Lovys.WebApp v1"));
             }
+            
             using (var scope = app.ApplicationServices.CreateScope()) {
                 var context = scope.ServiceProvider.GetRequiredService<APIContext>();
 
