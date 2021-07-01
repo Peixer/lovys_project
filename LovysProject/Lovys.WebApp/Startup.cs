@@ -140,8 +140,8 @@ namespace Lovys.WebApp
                 User = dianaUserInterviewer,
                 StartTime = "12pm",
                 EndTime = "6pm",
-                StartDate = DateTime.Now.Next(DayOfWeek.Monday),
-                EndDate = DateTime.Now.Next(DayOfWeek.Friday),
+                StartDate = DateTime.Now.WeekAfter().BeginningOfWeek(),
+                EndDate = DateTime.Now.WeekAfter().EndOfWeek(),
                 DayOfWeek = DayOfWeek.Monday
             });
             context.Availabilities.Add(new Availability()
@@ -149,8 +149,8 @@ namespace Lovys.WebApp
                 User = dianaUserInterviewer,
                 StartTime = "12pm",
                 EndTime = "6pm",
-                StartDate = DateTime.Now.Next(DayOfWeek.Monday),
-                EndDate = DateTime.Now.Next(DayOfWeek.Friday),
+                StartDate = DateTime.Now.WeekAfter().BeginningOfWeek(),
+                EndDate = DateTime.Now.WeekAfter().EndOfWeek(),
                 DayOfWeek = DayOfWeek.Wednesday
             });
             context.Availabilities.Add(new Availability()
@@ -158,8 +158,8 @@ namespace Lovys.WebApp
                 User = dianaUserInterviewer,
                 StartTime = "9am",
                 EndTime = "12pm",
-                StartDate = DateTime.Now.Next(DayOfWeek.Monday),
-                EndDate = DateTime.Now.Next(DayOfWeek.Friday),
+                StartDate = DateTime.Now.WeekAfter().BeginningOfWeek(),
+                EndDate = DateTime.Now.WeekAfter().EndOfWeek(),
                 DayOfWeek = DayOfWeek.Tuesday
             });
             context.Availabilities.Add(new Availability()
@@ -167,8 +167,8 @@ namespace Lovys.WebApp
                 User = dianaUserInterviewer,
                 StartTime = "9am",
                 EndTime = "12pm",
-                StartDate = DateTime.Now.Next(DayOfWeek.Monday),
-                EndDate = DateTime.Now.Next(DayOfWeek.Friday),
+                StartDate = DateTime.Now.WeekAfter().BeginningOfWeek(),
+                EndDate = DateTime.Now.WeekAfter().EndOfWeek(),
                 DayOfWeek = DayOfWeek.Thursday
             });
         }
@@ -190,8 +190,8 @@ namespace Lovys.WebApp
                 User = maryUserInterviewer,
                 StartTime = "9am",
                 EndTime = "4pm",
-                StartDate = DateTime.Now.Next(DayOfWeek.Monday),
-                EndDate = DateTime.Now.Next(DayOfWeek.Friday),
+                StartDate = DateTime.Now.WeekAfter().BeginningOfWeek(),
+                EndDate = DateTime.Now.WeekAfter().EndOfWeek(),
                 DayOfWeek = DayOfWeek.Monday
             });
             context.Availabilities.Add(new Availability()
@@ -199,8 +199,8 @@ namespace Lovys.WebApp
                 User = maryUserInterviewer,
                 StartTime = "9am",
                 EndTime = "4pm",
-                StartDate = DateTime.Now.Next(DayOfWeek.Monday),
-                EndDate = DateTime.Now.Next(DayOfWeek.Friday),
+                StartDate = DateTime.Now.WeekAfter().BeginningOfWeek(),
+                EndDate = DateTime.Now.WeekAfter().EndOfWeek(),
                 DayOfWeek = DayOfWeek.Tuesday
             });
             context.Availabilities.Add(new Availability()
@@ -208,8 +208,8 @@ namespace Lovys.WebApp
                 User = maryUserInterviewer,
                 StartTime = "9am",
                 EndTime = "4pm",
-                StartDate = DateTime.Now.Next(DayOfWeek.Monday),
-                EndDate = DateTime.Now.Next(DayOfWeek.Friday),
+                StartDate = DateTime.Now.WeekAfter().BeginningOfWeek(),
+                EndDate = DateTime.Now.WeekAfter().EndOfWeek(),
                 DayOfWeek = DayOfWeek.Wednesday
             });
             context.Availabilities.Add(new Availability()
@@ -217,8 +217,8 @@ namespace Lovys.WebApp
                 User = maryUserInterviewer,
                 StartTime = "9am",
                 EndTime = "4pm",
-                StartDate = DateTime.Now.Next(DayOfWeek.Monday),
-                EndDate = DateTime.Now.Next(DayOfWeek.Friday),
+                StartDate = DateTime.Now.WeekAfter().BeginningOfWeek(),
+                EndDate = DateTime.Now.WeekAfter().EndOfWeek(),
                 DayOfWeek = DayOfWeek.Thursday
             });
             context.Availabilities.Add(new Availability()
@@ -226,8 +226,8 @@ namespace Lovys.WebApp
                 User = maryUserInterviewer,
                 StartTime = "9am",
                 EndTime = "4pm",
-                StartDate = DateTime.Now.Next(DayOfWeek.Monday),
-                EndDate = DateTime.Now.Next(DayOfWeek.Friday),
+                StartDate = DateTime.Now.WeekAfter().BeginningOfWeek(),
+                EndDate = DateTime.Now.WeekAfter().EndOfWeek(),
                 DayOfWeek = DayOfWeek.Friday
             });
         }
@@ -248,8 +248,8 @@ namespace Lovys.WebApp
                 User = johnUserCandidate,
                 StartTime = "9am",
                 EndTime = "10am",
-                StartDate = DateTime.Now.Next(DayOfWeek.Monday),
-                EndDate = DateTime.Now.Next(DayOfWeek.Friday),
+                StartDate = DateTime.Now.WeekAfter().BeginningOfWeek(),
+                EndDate = DateTime.Now.WeekAfter().EndOfWeek(),
                 DayOfWeek = DayOfWeek.Monday
             });
             context.Availabilities.Add(new Availability()
@@ -257,8 +257,8 @@ namespace Lovys.WebApp
                 User = johnUserCandidate,
                 StartTime = "9am",
                 EndTime = "10am",
-                StartDate = DateTime.Now.Next(DayOfWeek.Monday),
-                EndDate = DateTime.Now.Next(DayOfWeek.Friday),
+                StartDate = DateTime.Now.WeekAfter().BeginningOfWeek(),
+                EndDate = DateTime.Now.WeekAfter().EndOfWeek(),
                 DayOfWeek = DayOfWeek.Tuesday
             });
             context.Availabilities.Add(new Availability()
@@ -266,8 +266,8 @@ namespace Lovys.WebApp
                 User = johnUserCandidate,
                 StartTime = "9am",
                 EndTime = "10am",
-                StartDate = DateTime.Now.Next(DayOfWeek.Monday),
-                EndDate = DateTime.Now.Next(DayOfWeek.Friday),
+                StartDate = DateTime.Now.WeekAfter().BeginningOfWeek(),
+                EndDate = DateTime.Now.WeekAfter().EndOfWeek(),
                 DayOfWeek = DayOfWeek.Wednesday
             });
             context.Availabilities.Add(new Availability()
@@ -275,8 +275,8 @@ namespace Lovys.WebApp
                 User = johnUserCandidate,
                 StartTime = "9am",
                 EndTime = "10am",
-                StartDate = DateTime.Now.Next(DayOfWeek.Monday),
-                EndDate = DateTime.Now.Next(DayOfWeek.Friday),
+                StartDate = DateTime.Now.WeekAfter().BeginningOfWeek(),
+                EndDate = DateTime.Now.WeekAfter().EndOfWeek(),
                 DayOfWeek = DayOfWeek.Thursday
             });
             context.Availabilities.Add(new Availability()
@@ -284,8 +284,8 @@ namespace Lovys.WebApp
                 User = johnUserCandidate,
                 StartTime = "9am",
                 EndTime = "10am",
-                StartDate = DateTime.Now.Next(DayOfWeek.Monday),
-                EndDate = DateTime.Now.Next(DayOfWeek.Friday),
+                StartDate = DateTime.Now.WeekAfter().BeginningOfWeek(),
+                EndDate = DateTime.Now.WeekAfter().EndOfWeek(),
                 DayOfWeek = DayOfWeek.Friday
             });
         }
