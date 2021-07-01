@@ -116,30 +116,149 @@ namespace Lovys.WebApp
         }
         private static void AddTestData(APIContext context)
         {
-            var testUser1 = new User
-            {
-                Id = "abc123",
-                Name = "string",
-                Username = "string",
-                Password = "string",
-                Role = UserRole.Interviewer,
-            };
- 
-            context.Users.Add(testUser1);
- 
-            var testAvailability = new Availability()
-            {
-                Id = "def234",
-                User = testUser1,
-                EndTime = "9pm",
-                StartTime = "8pm",
-                DayOfWeek = DayOfWeek.Friday
-            };
- 
-            context.Availabilities.Add(testAvailability);
+            AddDianaInterviewer(context);
+            AddMaryInterviewer(context);
+            AddJohnCandidate(context);
  
             context.SaveChanges();
         }
+
+        private static void AddDianaInterviewer(APIContext context)
+        {
+            var dianaUserInterviewer = new User
+            {
+                Name = "Diana",
+                Username = "diana",
+                Password = "123456",
+                Role = UserRole.Interviewer,
+            };  
+ 
+            context.Users.Add(dianaUserInterviewer);
+            context.Availabilities.Add(new Availability()
+            {
+                User = dianaUserInterviewer,
+                StartTime = "12pm",
+                EndTime = "6pm",
+                DayOfWeek = DayOfWeek.Monday
+            });
+            context.Availabilities.Add(new Availability()
+            {
+                User = dianaUserInterviewer,
+                StartTime = "12pm",
+                EndTime = "6pm",
+                DayOfWeek = DayOfWeek.Wednesday
+            });
+            context.Availabilities.Add(new Availability()
+            {
+                User = dianaUserInterviewer,
+                StartTime = "9am",
+                EndTime = "12pm",
+                DayOfWeek = DayOfWeek.Tuesday
+            });
+            context.Availabilities.Add(new Availability()
+            {
+                User = dianaUserInterviewer,
+                StartTime = "9am",
+                EndTime = "12pm",
+                DayOfWeek = DayOfWeek.Thursday
+            });
+        }
+
+        private static void AddMaryInterviewer(APIContext context)
+        {
+            var maryUserInterviewer = new User
+            {
+                Name = "Mary",
+                Username = "mary",
+                Password = "123456",
+                Role = UserRole.Interviewer,
+            };
+
+            context.Users.Add(maryUserInterviewer);
+            
+            context.Availabilities.Add(new Availability()
+            {
+                User = maryUserInterviewer,
+                StartTime = "9am",
+                EndTime = "4pm",
+                DayOfWeek = DayOfWeek.Monday
+            });
+            context.Availabilities.Add(new Availability()
+            {
+                User = maryUserInterviewer,
+                StartTime = "9am",
+                EndTime = "4pm",
+                DayOfWeek = DayOfWeek.Tuesday
+            });
+            context.Availabilities.Add(new Availability()
+            {
+                User = maryUserInterviewer,
+                StartTime = "9am",
+                EndTime = "4pm",
+                DayOfWeek = DayOfWeek.Wednesday
+            });
+            context.Availabilities.Add(new Availability()
+            {
+                User = maryUserInterviewer,
+                StartTime = "9am",
+                EndTime = "4pm",
+                DayOfWeek = DayOfWeek.Thursday
+            });
+            context.Availabilities.Add(new Availability()
+            {
+                User = maryUserInterviewer,
+                StartTime = "9am",
+                EndTime = "4pm",
+                DayOfWeek = DayOfWeek.Friday
+            });
+        }
         
+        private static void AddJohnCandidate(APIContext context)
+        {
+            var johnUserCandidate = new User
+            {
+                Name = "John",
+                Username = "john",
+                Password = "123456",
+                Role = UserRole.Candidate,
+            };  
+ 
+            context.Users.Add(johnUserCandidate);
+            context.Availabilities.Add(new Availability()
+            {
+                User = johnUserCandidate,
+                StartTime = "9am",
+                EndTime = "10am",
+                DayOfWeek = DayOfWeek.Monday
+            });
+            context.Availabilities.Add(new Availability()
+            {
+                User = johnUserCandidate,
+                StartTime = "9am",
+                EndTime = "10am",
+                DayOfWeek = DayOfWeek.Tuesday
+            });
+            context.Availabilities.Add(new Availability()
+            {
+                User = johnUserCandidate,
+                StartTime = "9am",
+                EndTime = "10am",
+                DayOfWeek = DayOfWeek.Wednesday
+            });
+            context.Availabilities.Add(new Availability()
+            {
+                User = johnUserCandidate,
+                StartTime = "9am",
+                EndTime = "10am",
+                DayOfWeek = DayOfWeek.Thursday
+            });
+            context.Availabilities.Add(new Availability()
+            {
+                User = johnUserCandidate,
+                StartTime = "9am",
+                EndTime = "10am",
+                DayOfWeek = DayOfWeek.Friday
+            });
+        }
     }
 }
