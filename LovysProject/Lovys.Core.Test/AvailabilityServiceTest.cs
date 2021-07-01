@@ -27,9 +27,21 @@ namespace Lovys.Core.Test
             availabilityRepositoryMock.Setup(x => x.Find(It.IsAny<List<string>>()))
                 .Returns(Task.FromResult(new List<Availability>()
                 {
-                    new Availability(),
-                    new Availability(),
                     new Availability()
+                    {
+                        StartDate = DateTime.Now,
+                        EndDate = DateTime.Now.AddDays(2)
+                    },
+                    new Availability()
+                    {
+                        StartDate = DateTime.Now,
+                        EndDate = DateTime.Now.AddDays(2)
+                    },
+                    new Availability()
+                    {
+                        StartDate = DateTime.Now,
+                        EndDate = DateTime.Now.AddDays(2)
+                    }
                 }));
 
             availabilityService = new AvailabilityService(availabilityRepositoryMock.Object,
@@ -39,7 +51,8 @@ namespace Lovys.Core.Test
         [Test]
         public async Task should_return_availabilities()
         {
-            var availabilities = await availabilityService.GetAvailabilitiesByUserId(new List<string>() {"abc123"});
+            var availabilities = await availabilityService.GetAvailabilitiesByUserId(new List<string>() {"abc123"},
+                DateTime.Now, DateTime.Now.AddDays(2));
 
             availabilities.Count.ShouldBeGreaterThan(0);
         }
@@ -51,22 +64,22 @@ namespace Lovys.Core.Test
             {
                 EndTime = "20pm", StartTime = "-2am"
             }).ShouldBeFalse();
-            
+
             availabilityService.IsValidSlotTime(new Availability()
             {
                 EndTime = "10pm", StartTime = "-2am"
             }).ShouldBeFalse();
-            
+
             availabilityService.IsValidSlotTime(new Availability()
             {
                 EndTime = "13pm", StartTime = "2am"
             }).ShouldBeFalse();
-            
+
             availabilityService.IsValidSlotTime(new Availability()
             {
                 EndTime = "0am", StartTime = "5am"
             }).ShouldBeFalse();
-            
+
             availabilityService.IsValidSlotTime(new Availability()
             {
                 EndTime = "12am", StartTime = "5am"

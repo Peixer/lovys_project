@@ -39,9 +39,15 @@ namespace Lovys.Core.Calendar.Services
             return endDate.Hour >= startDate.Hour;
         }
 
-        public async Task<List<Availability>> GetAvailabilitiesByUserId(List<string> userIds)
+        public async Task<List<Availability>> GetAvailabilitiesByUserId(List<string> userIds, DateTime startDate, DateTime endDate)
         {
-            return await _availabilityRepository.Find(userIds);
+            var availabilities = await _availabilityRepository.Find(userIds);
+
+            return availabilities.Where(x =>
+                    (x.StartDate < endDate && x.StartDate >= startDate) ||
+                    (x.EndDate > startDate && x.EndDate <= endDate) || 
+                    (x.StartDate < startDate && x.EndDate > endDate))
+                .ToList();
         }
 
         public List<string> SplitRangeHours(Availability availability)

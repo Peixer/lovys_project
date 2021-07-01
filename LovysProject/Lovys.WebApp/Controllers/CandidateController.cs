@@ -51,8 +51,9 @@ namespace Lovys.WebApp.Controllers
         [HttpPost("/{id}/filter")]
         public async Task<IActionResult> FilterPeriods(string id, FilterPeriodsModel filter)
         {
-            var availabilitiesCandidate = await _availabilityService.GetAvailabilitiesByUserId(new List<string>() {id});
-            var availabilitiesInterviewers = await _availabilityService.GetAvailabilitiesByUserId(filter.Interviewers);
+            var userIdsCandidate = new List<string>() {id};
+            var availabilitiesCandidate = await _availabilityService.GetAvailabilitiesByUserId(userIdsCandidate, filter.StartDate, filter.EndDate);
+            var availabilitiesInterviewers = await _availabilityService.GetAvailabilitiesByUserId(filter.Interviewers, filter.StartDate, filter.EndDate);
 
             var hourAvailabilities = _availabilityService.GetHoursAvailabilities(availabilitiesCandidate, availabilitiesInterviewers);
             var matches = _availabilityService.GetMatchesFromAvailabilities(hourAvailabilities);
