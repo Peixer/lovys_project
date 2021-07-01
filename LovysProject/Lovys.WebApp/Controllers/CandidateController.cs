@@ -8,6 +8,7 @@ using Lovys.Core.Calendar.Repositories;
 using Lovys.Core.Calendar.Services;
 using Lovys.WebApp.Models;
 using Lovys.WebApp.Validators;
+using Lovys.WebApp.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -57,8 +58,10 @@ namespace Lovys.WebApp.Controllers
 
             var hourAvailabilities = _availabilityService.GetHoursAvailabilities(availabilitiesCandidate, availabilitiesInterviewers);
             var matches = _availabilityService.GetMatchesFromAvailabilities(hourAvailabilities);
+
+            var viewModel = matches.Select(x => new HourAvailabilityViewModel(x));
             
-            return Ok(matches);
+            return Ok(viewModel);
         }
     }
 }
