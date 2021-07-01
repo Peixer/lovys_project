@@ -38,7 +38,7 @@ namespace Lovys.WebApp.Test
         {
             ObjectResult result = (ObjectResult) await controller.Post(new Availability()
             {
-                EndTime = "04pm", StartTime = "12am", DayOfWeek = DayOfWeek.Monday
+                EndTime = "04pm", StartTime = "12am", DayOfWeek = DayOfWeek.Monday, EndDate = DateTime.Now, StartDate = DateTime.Now
             });
 
             result.Value.ToString().ShouldBe("sucess");
@@ -61,7 +61,7 @@ namespace Lovys.WebApp.Test
         {
             ObjectResult result = (ObjectResult) await controller.Post(new Availability()
             {
-                EndTime = "19pm", StartTime = "11pm", DayOfWeek = DayOfWeek.Monday
+                EndTime = "19pm", StartTime = "11pm", DayOfWeek = DayOfWeek.Monday, EndDate = DateTime.Now, StartDate = DateTime.Now
             });
 
             result.StatusCode.ShouldBe(400);
@@ -73,7 +73,7 @@ namespace Lovys.WebApp.Test
         {
             ObjectResult result = (ObjectResult) await controller.Post(new Availability()
             {
-                EndTime = "10pm", StartTime = "11pm", DayOfWeek = DayOfWeek.Monday
+                EndTime = "10pm", StartTime = "11pm", DayOfWeek = DayOfWeek.Monday, EndDate = DateTime.Now, StartDate = DateTime.Now
             });
 
             result.StatusCode.ShouldBe(400);
