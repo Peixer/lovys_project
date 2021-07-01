@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Lovys.Core.Calendar.DTO;
 using Lovys.Core.Calendar.Entities;
@@ -28,44 +28,15 @@ namespace Lovys.Core.Calendar.Services
 
         public bool IsValidSlotTime(Availability availability)
         {
-            var startTimeIsAM = IsAM(availability.StartTime);
-            var endIsTimeAM = IsAM(availability.EndTime);
-            var hourStart = Convert.ToInt16(Regex.Replace(availability.StartTime, @"\D", ""));
-            var hourEnd = Convert.ToInt16(Regex.Replace(availability.EndTime, @"\D", ""));
+            var errorParserStartTime = DateTime.TryParseExact(availability.StartTime, "htt", null,
+                DateTimeStyles.AssumeLocal, out var startDate);
+            var errorParserEndTime = DateTime.TryParseExact(availability.EndTime, "htt", null,
+                DateTimeStyles.AssumeLocal, out var endDate);
 
-            if (StartTimeIsGreaterThanEndTime(startTimeIsAM, endIsTimeAM))
+            if (!errorParserStartTime || !errorParserEndTime)
                 return false;
 
-            if (endIsTimeAM == startTimeIsAM)
-            {
-                if (hourEnd < hourStart)
-                    return false;
-            }
-
-            if (TimeSlotsIsGreaterThanTwelveHour(hourEnd, hourStart))
-                return false;
-
-            return true;
-        }
-
-        private bool IsAM(string time)
-        {
-            return time.Contains("am");
-        }
-
-        private int GetHours(string time)
-        {
-            return Convert.ToInt16(Regex.Replace(time, @"\D", ""));
-        }
-
-        private bool StartTimeIsGreaterThanEndTime(bool startTimeIsAM, bool endIsTimeAM)
-        {
-            return !startTimeIsAM && endIsTimeAM;
-        }
-
-        private bool TimeSlotsIsGreaterThanTwelveHour(int hourEnd, int hourStart)
-        {
-            return hourEnd > 12 || hourStart > 12;
+            return endDate.Hour >= startDate.Hour;
         }
 
         public async Task<List<Availability>> GetAvailabilitiesByUserId(List<string> userIds)
@@ -75,19 +46,10 @@ namespace Lovys.Core.Calendar.Services
 
         public List<string> SplitRangeHours(Availability availability)
         {
-            List<string> hoursToReturn = new List<string>();
+            var hoursToReturn = new List<string>();
 
-            var startTimeIsAM = IsAM(availability.StartTime);
-            var endIsTimeAM = IsAM(availability.EndTime);
-            var hourStart = GetHours(availability.StartTime);
-            var hourEnd = GetHours(availability.EndTime);
-            if (!startTimeIsAM)
-                hourStart += 12;
-            if (!endIsTimeAM)
-                hourEnd += 12;
-
-            DateTime startDate = new DateTime(2020, 1, 1, hourStart, 00, 00, DateTimeKind.Local);
-            DateTime endDate = new DateTime(2020, 1, 1, hourEnd, 00, 00, DateTimeKind.Local);
+            var startDate = DateTime.ParseExact(availability.StartTime, "htt", null);
+            var endDate = DateTime.ParseExact(availability.EndTime, "htt", null);
 
             while (startDate.Hour != endDate.Hour)
             {
@@ -101,36 +63,22 @@ namespace Lovys.Core.Calendar.Services
         public List<HourAvailability> GetHoursAvailabilities(List<Availability> availabilitiesCandidate,
             List<Availability> availabilitiesInterviewers)
         {
-            List<HourAvailability> hoursFree = new List<HourAvailability>();
-            availabilitiesCandidate.ForEach(availability =>
+            var hoursAvailabilities = new List<HourAvailability>();
+            AddingHoursAvailabilities(availabilitiesCandidate, hoursAvailabilities);
+            AddingHoursAvailabilities(availabilitiesInterviewers, hoursAvailabilities);
+
+            return hoursAvailabilities;
+        }
+
+        private void AddingHoursAvailabilities(List<Availability> availabilities,
+            List<HourAvailability> hoursAvailabilities)
+        {
+            availabilities.ForEach(availability =>
             {
                 var hours = SplitRangeHours(availability);
 
-                foreach (var hour in hours)
-                {
-                    hoursFree.Add(new HourAvailability()
-                    {
-                        Hour = hour, User = availability.User, DayOfWeek = availability.DayOfWeek
-                    });
-                }
+                hoursAvailabilities.AddRange(hours.Select(hour => new HourAvailability() {Hour = hour, User = availability.User, DayOfWeek = availability.DayOfWeek}));
             });
-
-            availabilitiesInterviewers.ForEach(availability =>
-            {
-                var hours = SplitRangeHours(availability);
-
-                foreach (var hour in hours)
-                {
-                    hoursFree.Add(new HourAvailability()
-                    {
-                        Hour = hour,
-                        User = availability.User,
-                        DayOfWeek = availability.DayOfWeek
-                    });
-                }
-            });
-
-            return hoursFree;
         }
 
         public List<HourAvailability> GetMatchesFromAvailabilities(List<HourAvailability> hoursAvailabilities)

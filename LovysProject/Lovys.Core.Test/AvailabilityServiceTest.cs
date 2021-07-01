@@ -48,7 +48,7 @@ namespace Lovys.Core.Test
         public async Task should_split_range_hours()
         {
             var hours = availabilityService.SplitRangeHours(
-                new Availability() {EndTime = "5pm", StartTime = "6am"});
+                new Availability() {EndTime = "5pm", StartTime = "06am"});
 
             hours.Any(x => x == "6am").ShouldBeTrue();
             hours.Any(x => x == "7am").ShouldBeTrue();

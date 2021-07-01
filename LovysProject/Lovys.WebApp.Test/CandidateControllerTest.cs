@@ -73,7 +73,7 @@ namespace Lovys.WebApp.Test
         {
             ObjectResult result = (ObjectResult) await controller.Post(new Availability()
             {
-                EndTime = "10pm", StartTime = "12pm", DayOfWeek = DayOfWeek.Monday
+                EndTime = "10pm", StartTime = "11pm", DayOfWeek = DayOfWeek.Monday
             });
 
             result.StatusCode.ShouldBe(400);
