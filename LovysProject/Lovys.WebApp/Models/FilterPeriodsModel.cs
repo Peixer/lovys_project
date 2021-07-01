@@ -1,9 +1,10 @@
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace Lovys.WebApp.Models
 {
     public class FilterPeriodsModel
     {
-        public List<string> Interviewers { get; set; }
+        [Required] public List<string> Interviewers { get; set; }
     }
 }

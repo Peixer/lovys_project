@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using Lovys.Core.Calendar.DTO;
 using Lovys.Core.Calendar.Entities;
 using Lovys.Core.Calendar.Repositories;
 using Lovys.Core.Calendar.Services;
@@ -49,25 +51,13 @@ namespace Lovys.WebApp.Controllers
         [HttpPost("/{id}/filter")]
         public async Task<IActionResult> FilterPeriods(string id, FilterPeriodsModel filter)
         {
-            //availabilities interviewers
-            //availabilities candidate
-            //intersection between then
-
-            var availabilitiesCandadite = await _availabilityService.GetAvailabilitiesByUserId(new List<string>() {id});
+            var availabilitiesCandidate = await _availabilityService.GetAvailabilitiesByUserId(new List<string>() {id});
             var availabilitiesInterviewers = await _availabilityService.GetAvailabilitiesByUserId(filter.Interviewers);
 
-
-            // create method to split range of hours
-            // create new class to make free hour to candidate/interviewers
-            // create list of period class
-            // order list of period class
-            // group items with same DayOfWeek + hour on list of period class 
+            var hourAvailabilities = _availabilityService.GetHoursAvailabilities(availabilitiesCandidate, availabilitiesInterviewers);
+            var matches = _availabilityService.GetMatchesFromAvailabilities(hourAvailabilities);
             
-            
-            
-            
-            
-            return Ok(await _userRepository.FindUserById(id));
+            return Ok(matches);
         }
     }
 }
